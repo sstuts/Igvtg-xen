@@ -29,7 +29,7 @@ CONFIG_$(XEN_OS) := y
 SHELL     ?= /bin/sh
 
 # Tools to run on system hosting the build
-HOSTCFLAGS  = -Wall -Werror -Wstrict-prototypes -O2 -fomit-frame-pointer
+HOSTCFLAGS  = -Wall -Werror -Wstrict-prototypes -O0 -g -fomit-frame-pointer
 HOSTCFLAGS += -fno-strict-aliasing
 
 DISTDIR     ?= $(XEN_ROOT)/dist
@@ -212,7 +212,7 @@ define buildmakevars2header-closure
 endef
 
 CFLAGS += -fno-strict-aliasing
-
+CFLAGS += -g -O0
 CFLAGS += -std=gnu99
 
 CFLAGS += -Wall -Wstrict-prototypes
@@ -261,19 +261,19 @@ endif
 
 ifeq ($(GIT_HTTP),y)
 OVMF_UPSTREAM_URL ?= http://xenbits.xen.org/git-http/ovmf.git
-QEMU_UPSTREAM_URL ?= http://xenbits.xen.org/git-http/qemu-xen.git
+QEMU_UPSTREAM_URL ?= http://github.com/intel/igvtg-qemu.git
 QEMU_TRADITIONAL_URL ?= http://xenbits.xen.org/git-http/qemu-xen-traditional.git
 SEABIOS_UPSTREAM_URL ?= http://xenbits.xen.org/git-http/seabios.git
 MINIOS_UPSTREAM_URL ?= http://xenbits.xen.org/git-http/mini-os.git
 else
 OVMF_UPSTREAM_URL ?= git://xenbits.xen.org/ovmf.git
-QEMU_UPSTREAM_URL ?= git://xenbits.xen.org/qemu-xen.git
+QEMU_UPSTREAM_URL ?= git://github.com/intel/igvtg-qemu.git
 QEMU_TRADITIONAL_URL ?= git://xenbits.xen.org/qemu-xen-traditional.git
 SEABIOS_UPSTREAM_URL ?= git://xenbits.xen.org/seabios.git
 MINIOS_UPSTREAM_URL ?= git://xenbits.xen.org/mini-os.git
 endif
 OVMF_UPSTREAM_REVISION ?= 947f3737abf65fda63f3ffd97fddfa6986986868
-QEMU_UPSTREAM_REVISION ?= qemu-xen-4.10.0
+QEMU_UPSTREAM_REVISION ?= stable-2.10.0
 MINIOS_UPSTREAM_REVISION ?= xen-RELEASE-4.10.0
 # Mon Oct 16 16:36:41 2017 +0100
 # Update Xen header files again

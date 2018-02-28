@@ -2209,6 +2209,12 @@ skip_usbdev:
                                 &b_info->u.hvm.spice.image_compression, 0);
         xlu_cfg_replace_string (config, "spice_streaming_video",
                                 &b_info->u.hvm.spice.streaming_video, 0);
+        xlu_cfg_replace_string (config, "spiceaddr",
+                                &b_info->u.hvm.spice.addr, 0);
+        xlu_cfg_get_defbool(config, "spicegl",
+                            &b_info->u.hvm.spice.gl, 0);
+        xlu_cfg_get_defbool(config, "spiceunix",
+                            &b_info->u.hvm.spice.unix_, 0);
         xlu_cfg_get_defbool(config, "nographic", &b_info->u.hvm.nographic, 0);
         if (!xlu_cfg_get_long(config, "gfx_passthru", &l, 1)) {
             libxl_defbool_set(&b_info->u.hvm.gfx_passthru, l);

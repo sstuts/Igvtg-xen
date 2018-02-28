@@ -14,6 +14,7 @@ XLUMINOR = 0
 CFLAGS += -Werror -Wno-format-zero-length -Wmissing-declarations \
 	-Wno-declaration-after-statement -Wformat-nonliteral
 CFLAGS += -I. -fPIC
+CFLAGS += -O0 -g
 
 ifeq ($(CONFIG_Linux),y)
 LIBUUID_LIBS += -luuid

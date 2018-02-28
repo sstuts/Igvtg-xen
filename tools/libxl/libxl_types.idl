@@ -287,6 +287,10 @@ libxl_spice_info = Struct("spice_info", [
     ("tls_port",    integer),
     # Interface to bind to
     ("host",        string),
+    # vgpu parameters
+    ("addr",        string),
+    ("unix_",        libxl_defbool),
+    ("gl",          libxl_defbool),
     # enable client connection with no password
     ("disable_ticketing", libxl_defbool),
     ("passwd",      string),

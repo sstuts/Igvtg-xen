@@ -275,6 +275,8 @@ subdir-all-qemu-xen-dir: qemu-xen-dir-find
 		--localstatedir=$(localstatedir) \
 		--disable-kvm \
 		--disable-docs \
+                --enable-spice \
+                --enable-usb-redir \
 		--disable-guest-agent \
 		--python=$(PYTHON) \
 		$(CONFIG_QEMUU_EXTRA_ARGS) \

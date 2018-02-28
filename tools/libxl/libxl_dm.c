@@ -718,10 +718,12 @@ static char *dm_spice_options(libxl__gc *gc,
                                     const libxl_spice_info *spice)
 {
     char *opt;
-
-    if (!spice->port && !spice->tls_port) {
+    int hang = 0;
+    while (hang)
+        ;
+    if (!libxl_defbool_val(spice->gl) && !spice->port && !spice->tls_port) {
         LOG(ERROR,
-            "at least one of the spiceport or tls_port must be provided");
+            "at least one of the spicegl, spiceport or tls_port must be provided");
         return NULL;
     }
 
@@ -735,7 +737,11 @@ static char *dm_spice_options(libxl__gc *gc,
             return NULL;
         }
     }
-    opt = GCSPRINTF("port=%d,tls-port=%d", spice->port, spice->tls_port);
+    if (!libxl_defbool_val(spice->gl)) {
+        opt = GCSPRINTF("port=%d,tls-port=%d", spice->port, spice->tls_port);
+    }else {
+        opt = GCSPRINTF("gl=%s", "on");
+    }
     if (spice->host)
         opt = GCSPRINTF("%s,addr=%s", opt, spice->host);
     if (libxl_defbool_val(spice->disable_ticketing))
@@ -755,6 +761,13 @@ static char *dm_spice_options(libxl__gc *gc,
     if (spice->streaming_video)
         opt = GCSPRINTF("%s,streaming-video=%s", opt, spice->streaming_video);
 
+    if (spice->addr){
+        opt = GCSPRINTF("%s,addr=%s", opt, spice->addr);
+        if (libxl_defbool_val(spice->unix_)) {
+            opt=GCSPRINTF("%s,unix",opt);
+        }
+    }
+            
     return opt;
 }
 
