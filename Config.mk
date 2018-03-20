@@ -273,7 +273,7 @@ SEABIOS_UPSTREAM_URL ?= git://xenbits.xen.org/seabios.git
 MINIOS_UPSTREAM_URL ?= git://xenbits.xen.org/mini-os.git
 endif
 OVMF_UPSTREAM_REVISION ?= 947f3737abf65fda63f3ffd97fddfa6986986868
-QEMU_UPSTREAM_REVISION ?= stable-2.10.0
+QEMU_UPSTREAM_REVISION ?= remotes/origin/stable-2.10.0
 MINIOS_UPSTREAM_REVISION ?= xen-RELEASE-4.10.0
 # Mon Oct 16 16:36:41 2017 +0100
 # Update Xen header files again
